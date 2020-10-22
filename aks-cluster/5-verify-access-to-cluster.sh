@@ -1,4 +1,7 @@
 #!/bin/bash
 
-echo "kubectl get nodes"
+#include lib
+. ../lib/sh/libfuncs.sh
+
+cecho "RED" "kubectl get nodes"
 kubectl get nodes

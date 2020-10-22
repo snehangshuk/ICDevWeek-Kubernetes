@@ -1,4 +1,7 @@
 #!/bin/bash
 
-echo "az aks install-cli"
+#include lib
+. ../lib/sh/libfuncs.sh
+
+cecho "RED" "az aks install-cli"
 az aks install-cli
