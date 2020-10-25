@@ -1,0 +1,43 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: mysql
+  labels:
+    app: mysql
+    lab: kubernetes-lab
+spec: 
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mysql
+  template:
+    metadata:
+      labels: 
+        app: mysql
+        lab: kubernetes-lab
+    spec:
+      containers: 
+      - name: mysql
+        image: mysql:5.6
+        resources:
+          limits :
+            cpu: 0.5
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          value: password
+          #valueFrom:
+          #  secretKeyRef:
+          #    name: mysql-secret
+          #    key: password
+        ports: 
+        - containerPort: 3306
+          name: mysql
+        volumeMounts:
+          # name must match the volume name below
+        - name: mysql-persistent-volume
+          # mount path within the container
+          mountPath: /var/lib/mysql/data
+      volumes:
+        - name: mysql-persistent-volume
+          persistentVolumeClaim:
+            claimName: mysql-pvc

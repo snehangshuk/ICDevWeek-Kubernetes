@@ -1,0 +1,11 @@
+# Install bash completion on a Mac using homebrew
+brew install bash-completion
+
+# Load the kubectl completion code for zsh[1] into the current shell
+source <(kubectl completion zsh)
+
+# OR 
+# Write bash completion code to a file and source if from .bash_profile
+kubectl completion zsh > ~/.kube/completion.zsh.inc
+printf "\n# Kubectl shell completion\nsource '$HOME/.kube/completion.zsh.inc'\n" >> $HOME/.bash_profile
+source $HOME/.bash_profile

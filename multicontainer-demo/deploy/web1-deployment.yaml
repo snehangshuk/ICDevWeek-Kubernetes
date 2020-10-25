@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web1-deploy
+  labels:
+    app: web1
+    lab: kubernetes-lab
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: web1
+  template:
+    metadata:
+      labels:
+        app: web1
+        lab: kubernetes-lab
+    spec:
+      containers:
+        - name: index-page
+          image: snehangshuk/basic-flask:v1
+          ports:
+            - containerPort: 8001
+              name: http

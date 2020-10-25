@@ -11,4 +11,4 @@ DEPLOYNAME="myapp"
 DOCKERIMAGE="$USERNAME/$APP_NAME:$VERSIONNUM"
 
 cecho "RED" "kubectl create deployment $DEPLOYNAME --image $DOCKERIMAGE"
-kubectl create deployment $DEPLOYNAME --image $DOCKERIMAGE
+#kubectl create deployment $DEPLOYNAME --image $DOCKERIMAGE

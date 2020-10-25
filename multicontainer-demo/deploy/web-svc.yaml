@@ -1,0 +1,15 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: web-svc
+  labels:
+    app: web
+    lab: kubernetes-lab
+spec:
+  selector:
+    app: web
+  type: LoadBalancer
+  ports:
+   - port: 80
+     name: http-80
+     targetPort: 8001

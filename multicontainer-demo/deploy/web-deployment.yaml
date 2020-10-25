@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web-deploy
+  labels:
+    app: web
+    lab: kubernetes-lab
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: web
+  template:
+    metadata:
+      labels:
+        app: web
+        lab: kubernetes-lab
+    spec:
+      containers:
+        - name: redis
+          image: redis
+          ports:
+            - containerPort: 6379
+              name: redis
+        - name: python
+          image: snehangshuk/multicontainer-app:v1
+          env:
+            - name: "REDIS_HOST"
+              value: "localhost"
+          ports:
+            - containerPort: 8001
+              name: http
